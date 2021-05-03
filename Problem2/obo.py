@@ -52,6 +52,7 @@ stopwords += ['yours', 'yourself', 'yourselves']
 
 
 
+
 def stripNonAlphaNum(text):
     import re
     return re.compile(r'\W+', re.UNICODE).split(text)
@@ -64,6 +65,7 @@ def sortFreqDict(freqdict):
     aux = [(freqdict[key], key) for key in freqdict]
     aux.sort()
     aux.reverse()
+    print(type(aux))
     return aux
 
 def removeStopwords(wordlist, stopwords):
