@@ -1,6 +1,7 @@
-import urllib.request, urllib.error, urllib.parse, obo
-
-file = open('JNT.txt', encoding="utf8")
+import urllib.request, urllib.error, urllib.parse, obo, Graph
+import plotly.graph_objects as go
+import numpy as np
+file = open('GDEX.txt', encoding="utf8")
 text=file.read()
 file.close()
 
@@ -12,13 +13,19 @@ sorteddict = obo.sortFreqDict(dictionary)
 
 for s in sorteddict: print(str(s))
 
-import plotly.graph_objects as go
-import numpy as np
+print("w")
 
 N = 100000
 t = list(dictionary.keys())
 y = list(dictionary.values())
-
 fig = go.Figure(data=go.Scatter(x=t, y=y, mode='markers'))
+fig.update_layout(
+    xaxis = dict(
+        tickmode = 'array',
+        tickvals = list(dictionary.keys()),
+        ticktext = list(dictionary.keys()),
+    )
+)
 
 fig.show()
+
