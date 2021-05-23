@@ -12,9 +12,9 @@ p_tags = table.find_all('p')
 for tag in p_tags:
     print(tag.get_text())
 
-# fileName = 'test.txt'
-# with open(fileName)
-
+fileName = open('test.txt', "w")
+fileName.write(tag.get_text())
+fileName.close()
 
 
 
