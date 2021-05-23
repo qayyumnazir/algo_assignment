@@ -5,11 +5,16 @@ r = requests.get(url)
 #print(r.content)
 
 soup = BeautifulSoup(r.content, 'html5lib')
-# table = soup.find_('div', attrs = {'id':'post-content'})
-# print(table.prettify())
-# text = []
-# table.findAll('div', attrs = {'class':'field-item-even'})
-soup.find_all('p')
-print(soup.prettify())
+table = soup.find('div', attrs = {'id':'post-content'})
+#print(table.prettify())
+p_tags = table.find_all('p')
+
+for tag in p_tags:
+    print(tag.get_text())
+
+# fileName = 'test.txt'
+# with open(fileName)
+
+
 
 
