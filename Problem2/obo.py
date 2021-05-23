@@ -21,7 +21,7 @@ stopwords += ['here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers']
 stopwords += ['herself', 'him', 'himself', 'his', 'how', 'however']
 stopwords += ['hundred', 'i', 'ie', 'if', 'in', 'inc', 'indeed']
 stopwords += ['interest', 'into', 'is', 'it', 'its', 'itself', 'keep']
-stopwords += ['last', 'latter', 'latterly', 'least', 'less', 'ltd', 'made']
+stopwords += ['last', 'latter', 'latterly', 'least', 'less', 'ltd', 'made','make']
 stopwords += ['many', 'may', 'me', 'meanwhile', 'might', 'mill', 'mine']
 stopwords += ['more', 'moreover', 'most', 'mostly', 'move', 'much']
 stopwords += ['must', 'my', 'myself', 'name', 'namely', 'neither', 'never']
@@ -51,7 +51,7 @@ stopwords += ['within', 'without', 'would', 'yet', 'you', 'your']
 stopwords += ['yours', 'yourself', 'yourselves']
 stopwords += [str(x) for x in range(10000)]
 
-positiveWord =[]
+wrd=[]
 
 
 
@@ -72,63 +72,81 @@ def sortFreqDict(freqdict):
     return aux
 
 
-def computeLPSArray(pat, M, lps):
-    len = 0  # length of the previous longest prefix suffix
-
-    lps[0]  # lps[0] is always 0
-    i = 1
-
-    # the loop calculates lps[i] for i = 1 to M-1
-    while i < M:
-        if pat[i] == pat[len]:
-            len += 1
-            lps[i] = len
-            i += 1
-        else:
-            # This is tricky. Consider the example.
-            # AAACAAAA and i = 7. The idea is similar
-            # to search step.
-            if len != 0:
-                len = lps[len - 1]
-
-                # Also, note that we do not increment i here
-            else:
-                lps[i] = 0
-                i += 1
-
-def removeStopwords(wordlist, stopwords):
+#to REMOVE words
+def rabinKarp1(texts, patts, q):
     wrd=[]
-    for pat in stopwords:
-        for txt in wordlist:
-            M = len(pat)
-            N = len(txt)
+    for text in texts:
+        for patt in patts:
+            M = len(patt)
+            N = len(text)
+            hash_patt = 0
+            hash_text = 0
+            h = 0
+            if N==M:
+                for i in range(M):
+                    hash_patt += ord(patt[i]) * (q ** i)
+                    hash_text += ord(text[i]) * (q ** i)
 
-            # create lps[] that will hold the longest prefix suffix
-            # values for pattern
-            lps = [0] * M
-            j = 0  # index for pat[]
+                for i in range(0, N - M + 1, 1):
 
-            # Preprocess the pattern (calculate lps[] array)
-            computeLPSArray(pat, M, lps)
+                    if hash_patt == hash_text:
 
-            i = 0  # index for txt[]
-            while i < N:
-                if pat[j] == txt[i]:
-                    i += 1
-                    j += 1
+                        for j in range(0, M, 1):
+                            if text[i + j] != patt[j]:
+                                break
 
-                if j == M:
-                    wrd.append(txt)
-                    j = lps[j - 1]
+                        else:
+                            wrd.append(text)
 
-                # mismatch after j matches
-                elif i < N and pat[j] != txt[i]:
-                    # Do not match lps[0..lps[j-1]] characters,
-                    # they will match anyway
-                    if j != 0:
-                        j = lps[j - 1]
-                    else:
-                        i += 1
+                    if i < N - M:
+                        hash_text -= ord(text[i])
+                        hash_text = (hash_text // q) + (ord(text[i + M]) * (q ** (M - 1)))
+
+    return [w for w in texts if w not in wrd]
+#to SELECT word
+def rabinKarp2(texts, patts, q):
+    wrd1=[]
+    for text in texts:
+        for patt in patts:
+            M = len(patt)
+            N = len(text)
+            hash_patt = 0
+            hash_text = 0
+            h = 0
+            if N==M:
+                for i in range(M):
+                    hash_patt += ord(patt[i]) * (q ** i)
+                    hash_text += ord(text[i]) * (q ** i)
+
+                for i in range(0, N - M + 1, 1):
+
+                    if hash_patt == hash_text:
+
+                        for j in range(0, M, 1):
+                            if text[i + j] != patt[j]:
+                                break
+
+                        else:
+                            wrd1.append(text)
+
+                    if i < N - M:
+                        hash_text -= ord(text[i])
+                        hash_text = (hash_text // q) + (ord(text[i + M]) * (q ** (M - 1)))
+
+    return wrd1
 
 
-    return  [w for w in wordlist if w not in wrd]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
