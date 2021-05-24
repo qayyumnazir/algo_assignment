@@ -1,19 +1,19 @@
 import requests
 from bs4 import BeautifulSoup
-url = "https://www.theedgemarkets.com/article/some-30-firms-negeri-sembilan-willing-buy-own-covid19-vaccine-says-state-executive"
+
+
+#GDEX
+url = "https://www.theedgemarkets.com/article/gdex-partners-tasco-improve-logistics-delivery-services"
 r = requests.get(url)
-#print(r.content)
 
 soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
-#print(table.prettify())
 p_tags = table.find_all('p')
 
+fileName = open('gdex.txt', "w")
 for tag in p_tags:
     print(tag.get_text())
-
-fileName = open('test.txt', "w")
-fileName.write(tag.get_text())
+    fileName.write(tag.get_text() + "\n")
 fileName.close()
 
 
