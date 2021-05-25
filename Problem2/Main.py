@@ -8,10 +8,10 @@ def listToString(s):
         str1 += ele+' '
     return str1
 
-file = open('positive.txt', encoding="utf8")
+file = open('positive.txt')
 positive_Word=file.read()
 file.close()
-file = open('negative.txt', encoding="utf8")
+file = open('negative.txt')
 negative_Word=file.read()
 file.close()
 
@@ -20,7 +20,7 @@ file.close()
 posiwordlist = positive_Word.split(", ")
 negawordlist = negative_Word.split(", ")
 
-file = open('GDEX.txt', encoding="utf8")
+file = open('JNT.txt', encoding="utf8")
 text=file.read()
 file.close()
 
