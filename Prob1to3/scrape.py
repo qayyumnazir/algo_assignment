@@ -12,7 +12,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('gdex.txt', "w")
+fileName = open('gdex1.txt', "w")
 for tag in p_tags:
     print(tag.get_text())
     fileName.write(tag.get_text() + "\n")
@@ -25,7 +25,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('gdex.txt', "a")
+fileName = open('gdex1.txt', "a")
 fileName.write('\n' + 'article 2' + '\n')
 for tag in p_tags:
     print(tag.get_text())
@@ -39,7 +39,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('gdex.txt', "a")
+fileName = open('gdex1.txt', "a")
 fileName.write('\n' + 'article 3' + '\n')
 for tag in p_tags:
     print(tag.get_text())
@@ -103,7 +103,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('dhl.txt', "w")
+fileName = open('dhl1.txt', "w")
 for tag in p_tags:
     print(tag.get_text())
     fileName.write(tag.get_text() + "\n")
@@ -116,7 +116,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('dhl.txt', "a")
+fileName = open('dhl1.txt', "a")
 fileName.write('\n' + 'article 2' + '\n')
 for tag in p_tags:
     print(tag.get_text())
@@ -130,7 +130,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('dhl.txt', "a")
+fileName = open('dhl1.txt', "a")
 fileName.write('\n' + 'article 3' + '\n')
 for tag in p_tags:
     print(tag.get_text())
@@ -148,7 +148,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('ninja.txt', "w")
+fileName = open('ninja1.txt', "w")
 for tag in p_tags:
     print(tag.get_text())
     fileName.write(tag.get_text() + "\n")
@@ -161,7 +161,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('ninja.txt', "a")
+fileName = open('ninja1.txt', "a")
 fileName.write('\n' + 'article 2' + '\n')
 for tag in p_tags:
     print(tag.get_text())
@@ -175,7 +175,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('ninja.txt', "a")
+fileName = open('ninja1.txt', "a")
 fileName.write('\n' + 'article 3' + '\n')
 for tag in p_tags:
     print(tag.get_text())
