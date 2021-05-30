@@ -25,7 +25,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('gdex1.txt', "a")
+fileName = open('gdex2.txt', "w")
 fileName.write('\n' + 'article 2' + '\n')
 for tag in p_tags:
     print(tag.get_text())
@@ -39,7 +39,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 table = soup.find('div', attrs = {'id':'post-content'})
 p_tags = table.find_all('p')
 
-fileName = open('gdex1.txt', "a")
+fileName = open('gdex3.txt', "w")
 fileName.write('\n' + 'article 3' + '\n')
 for tag in p_tags:
     print(tag.get_text())
