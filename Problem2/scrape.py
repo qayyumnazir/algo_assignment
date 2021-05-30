@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 #GDEX
 #article 1
-"""
+
 url = "https://www.theedgemarkets.com/article/gdex-partners-tasco-improve-logistics-delivery-services"
 r = requests.get(url)
 
@@ -32,7 +32,7 @@ for tag in p_tags:
     fileName.write(tag.get_text() + "\n")
 fileName.close()
 
-url = "https://www.theedgemarkets.com/article/gdex-ties-doc2us-alpro-pharmacy-ease-medication-delivery"
+url = "https://www.theedgemarkets.com/article/gdex-look-creating-industrial-reit-part-next-growth-phase"
 r = requests.get(url)
 
 soup = BeautifulSoup(r.content, 'html5lib')
@@ -46,7 +46,7 @@ for tag in p_tags:
     fileName.write(tag.get_text() + "\n")
 fileName.close()
 #end of GDEX's articles
-"""
+
 
 #POS
 """
@@ -140,6 +140,7 @@ fileName.close()
 #End of DHL
 
 #Ninja van
+"""
 url = "https://www.theedgemarkets.com/article/ninja-van-capitalising-opportunities-presented-pandemic"
 r = requests.get(url)
 
@@ -180,6 +181,6 @@ for tag in p_tags:
     print(tag.get_text())
     fileName.write(tag.get_text() + "\n")
 fileName.close()
-
+"""
 
 
