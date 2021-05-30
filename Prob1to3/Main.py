@@ -1,6 +1,6 @@
 import obo
 import plotly.graph_objects as go
-import numpy as np
+
 
 def listToString(s):
     str1 = ""
@@ -20,7 +20,7 @@ file2.close()
 posiwordlist = positive_Word.split(", ")
 negawordlist = negative_Word.split(", ")
 
-def graphmaker(tf=''):
+def graphAndEvaluation(tf=''):
     file = open(tf, encoding="Latin-1")
     text = file.read()
     file.close()
@@ -30,9 +30,7 @@ def graphmaker(tf=''):
     wordlist1 = obo.rabinKarp2(wordlist, posiwordlist, 101)
     wordlist2 = obo.rabinKarp2(wordlist, negawordlist, 101)
 
-    print(list(wordlist))
-    print(list(wordlist1))
-    print(list(wordlist2))
+
 
     wordString = listToString(wordlist)
     dictionary = obo.wordListToFreqDict(wordlist)
@@ -48,19 +46,49 @@ def graphmaker(tf=''):
     t = list(dictionary.keys())
     y = list(dictionary.values())
     fig1 = go.Figure(data=go.Scatter(x=t, y=y, mode='markers'))
+    fig1.update_layout(title={
+        'text': tf + " Word Counts",
+        'y': 0.9,
+        'x': 0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'})
     fig1.show()
 
     x1 = wordlist1
     x2 = wordlist2
 
     fig = go.Figure()
+    fig.update_layout(title = {
+        'text': tf+" Negative and Positive Histogram",
+        'y': 0.9,
+        'x': 0.5,
+        'xanchor': 'center',
+        'yanchor': 'top'})
     fig.add_trace(go.Histogram(histfunc="sum", x=x1, name="Positive Word"))
     fig.add_trace(go.Histogram(histfunc="sum", x=x2, name="Negative Word"))
 
     fig.show()
 
 
-graphmaker('POS.txt')
+def PostiveOrNegative(tf=''):
+    file = open(tf, encoding="Latin-1")
+    text = file.read()
+    file.close()
+
+    fullwordlist = obo.stripNonAlphaNum(text)
+    wordlist = obo.rabinKarp1(fullwordlist, obo.stopwords, 101)
+    wordlist1 = obo.rabinKarp2(wordlist, posiwordlist, 101)
+    wordlist2 = obo.rabinKarp2(wordlist, negawordlist, 101)
+
+    if len(wordlist1)>len(wordlist2):
+        return ['Positive',len(wordlist1),len(wordlist2)]
+    else:
+        return ['Negative',len(wordlist1),len(wordlist2)]
+
+
+ev=PostiveOrNegative('pos1.txt')
+print(ev)
+
 
 
 
