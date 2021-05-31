@@ -121,15 +121,15 @@ for x in range(5):
                  sungaibulohranking=y+1
 
 
-print("probability for hub portklang is :"+str(newsentimenthub[0]))
-print("probability for hub petalingjaya is :"+str(newsentimenthub[1]))
-print("probability for hub batucaves is :"+str(newsentimenthub[2]))
-print("probability for hub kajang is :"+str(newsentimenthub[3]))
-print("probability for hub sungaibuloh is :"+str(newsentimenthub[4]))
+print("probability for hub citylink is :"+str(newsentimenthub[0]))
+print("probability for hub pos is :"+str(newsentimenthub[1]))
+print("probability for hub gdex is :"+str(newsentimenthub[2]))
+print("probability for hub jnt is :"+str(newsentimenthub[3]))
+print("probability for hub dhl is :"+str(newsentimenthub[4]))
 
 print("the sorted list of probability is "+ str(sortedlistofprobability))
-print("portklang is number "+str(portklangranking))
-print("petalingjaya is number "+str(petalingjayaranking))
-print("batucaves is number " +str(batucavesranking))
-print("kajang is number " + str(kajangranking))
-print("sungaibuloh is number "+ str(sungaibulohranking))
+print("citylink is number "+str(portklangranking))
+print("pos is number "+str(petalingjayaranking))
+print("gdex is number " +str(batucavesranking))
+print("jnt is number " + str(kajangranking))
+print("dhl is number "+ str(sungaibulohranking))
