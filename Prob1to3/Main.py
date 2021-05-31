@@ -40,7 +40,7 @@ def graphAndEvaluation(tf=''):
     sorteddictposi = obo.sortFreqDict(dictionaryposi)
     sorteddictnega = obo.sortFreqDict(dictionarynega)
 
-    for s in sorteddictposi: print(str(s))
+    # for s in sorteddictposi: print(str(s))
 
     N = 100000
     t = list(dictionary.keys())
@@ -85,9 +85,39 @@ def PostiveOrNegative(tf=''):
     else:
         return ['Negative',len(wordlist1),len(wordlist2)]
 
+def getPositive(tf):
+    file = open(tf, encoding="Latin-1")
+    text = file.read()
+    file.close()
 
-ev=PostiveOrNegative('pos1.txt')
-print(ev)
+    fullwordlist = obo.stripNonAlphaNum(text)
+    wordlist = obo.rabinKarp1(fullwordlist, obo.stopwords, 101)
+    wordlist1 = obo.rabinKarp2(wordlist, posiwordlist, 101)
+
+    return len(wordlist1)
+
+
+
+def getNegative(tf):
+    file = open(tf, encoding="Latin-1")
+    text = file.read()
+    file.close()
+
+    fullwordlist = obo.stripNonAlphaNum(text)
+    wordlist = obo.rabinKarp1(fullwordlist, obo.stopwords, 101)
+    wordlist1 = obo.rabinKarp2(wordlist, negawordlist, 101)
+
+    return len(wordlist1)
+
+couriername=['citylink1.txt','citylink2.txt','citylink3.txt','pos1.txt','pos2.txt','pos3.txt','gdex1.txt','gdex2.txt','gdex3.txt','jnt1.txt','jnt2.txt','jnt3.txt','dhl1.txt','dhl2.txt','dhl3.txt']
+
+if __name__ == "__main__":
+    for i in couriername:
+        graphAndEvaluation(i)
+
+
+
+
 
 
 
