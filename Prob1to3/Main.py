@@ -81,9 +81,9 @@ def PostiveOrNegative(tf=''):
     wordlist2 = obo.rabinKarp2(wordlist, negawordlist, 101)
 
     if len(wordlist1)>len(wordlist2):
-        return ['Positive',len(wordlist1),len(wordlist2)]
+        return ['Positive',len(wordlist1)/len(wordlist1)+len(wordlist2)]
     else:
-        return ['Negative',len(wordlist1),len(wordlist2)]
+        return ['Negative',len(wordlist1)/len(wordlist1)+len(wordlist2)]
 
 def getPositive(tf):
     file = open(tf, encoding="Latin-1")
@@ -109,11 +109,58 @@ def getNegative(tf):
 
     return len(wordlist1)
 
-couriername=['citylink1.txt','citylink2.txt','citylink3.txt','pos1.txt','pos2.txt','pos3.txt','gdex1.txt','gdex2.txt','gdex3.txt','jnt1.txt','jnt2.txt','jnt3.txt','dhl1.txt','dhl2.txt','dhl3.txt']
+couriernamez=['citylink1.txt','citylink2.txt','citylink3.txt',
+             'pos1.txt','pos2.txt','pos3.txt','gdex1.txt','gdex2.txt','gdex3.txt','jnt1.txt',
+             'jnt2.txt','jnt3.txt','dhl1.txt','dhl2.txt','dhl3.txt']
+Citylink=['citylink1.txt','citylink2.txt','citylink3.txt']
+Pos=['pos1.txt','pos2.txt','pos3.txt']
+gdex=['gdex1.txt','gdex2.txt','gdex3.txt']
+jnt=['jnt1.txt','jnt2.txt','jnt3.txt']
+dhl=['dhl1.txt','dhl2.txt','dhl3.txt']
+
+clpoint=0
+pospoint=0
+gdexpoint=0
+jntpoint=0
+dhlpoint=0
 
 if __name__ == "__main__":
-    for i in couriername:
-        graphAndEvaluation(i)
+
+    graphAndEvaluation("citylink1.txt")
+    for i in Citylink:
+        temp=PostiveOrNegative(i)
+        clpoint+=temp[1]
+    for i in Pos:
+
+        temp=PostiveOrNegative(i)
+        pospoint+=temp[1]
+    for i in gdex:
+
+        temp=PostiveOrNegative(i)
+        gdexpoint+=temp[1]
+    for i in jnt:
+
+        temp=PostiveOrNegative(i)
+        jntpoint+=temp[1]
+    for i in dhl:
+
+        temp=PostiveOrNegative(i)
+        dhlpoint+=temp[1]
+
+
+
+    com   = ["Citylink","Poslaju","Gdex","JNT","DHL"]
+    score = [clpoint, pospoint, gdexpoint,jntpoint, dhlpoint]
+
+    for i in range(5):
+        print("The score for ",com[i]," is ",score[i])
+
+
+
+
+
+
+
 
 
 
