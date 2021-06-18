@@ -81,9 +81,9 @@ def PostiveOrNegative(tf=''):
     wordlist2 = obo.rabinKarp2(wordlist, negawordlist, 101)
 
     if len(wordlist1)>len(wordlist2):
-        return ['Positive',len(wordlist1)/len(wordlist1)+len(wordlist2)]
+        return ['Positive',len(wordlist1)/(len(wordlist1)+len(wordlist2))]
     else:
-        return ['Negative',len(wordlist1)/len(wordlist1)+len(wordlist2)]
+        return ['Negative',len(wordlist1)/(len(wordlist1)+len(wordlist2))]
 
 def getPositive(tf):
     file = open(tf, encoding="Latin-1")

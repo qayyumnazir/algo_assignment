@@ -18,7 +18,7 @@ for i in range(15):
         k+=1
     courierposiword[k]+=Main.getPositive(couriername[i])
 
-print(list(courierposiword))
+
 
 
 couriernegaword=[0]*5
@@ -28,7 +28,7 @@ for i in range(15):
         k+=1
     couriernegaword[k]+=Main.getNegative(couriername[i])
 
-print(list(couriernegaword))
+
 
 
 
